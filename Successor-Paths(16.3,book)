@@ -1,0 +1,38 @@
+//Successor path
+#include<bits/stdc++.h>
+using namespace std;
+
+struct Graph{
+    int src;
+    int dest;
+};
+
+void Successor_Path(int x, int k, Graph g[], int &cnt, int des){
+    if(cnt == des){
+        cout<<g[x].src;
+        return;
+    }
+    else{
+        for(int i=0;i<k;i++){
+            cnt++;
+        Successor_Path(g[x].dest,k-1,g,cnt,des);
+    }
+    }
+    
+}
+
+int main(){
+    int n,e;
+    cin>>n>>e;
+    Graph g[e];
+    for(int i=1;i<=e;i++){
+        cin>>g[i].src;
+        cin>>g[i].dest;
+    }
+    
+    int x,k;
+    cin>>x>>k;
+    int des = k;
+    int cnt =0;
+    Successor_Path(x,k,g,cnt,des);
+}
