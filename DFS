@@ -1,0 +1,31 @@
+//DFS
+#include<bits/stdc++.h>
+using namespace std;
+
+void DFS(int s, vector<int> adj[], int n, bool *visited){
+    cout<<s;
+    visited[s] = true;
+    
+    for(int i=0;i<n;i++){
+        if(!visited[i]){
+            DFS(i, adj, n, visited);
+        }
+    }
+}
+
+int main(){
+    int n,e;
+    cin>>n>>e;
+    std::vector<int> adj[n] ;
+    for(int i=0;i<e;i++){
+        int x,y;
+        cin>>x>>y;
+        adj[x].push_back(y);
+    }
+    bool *visited = new bool[n];
+    for(int i=0;i<n;i++)
+    visited[i] = false;
+    
+    DFS(2,adj,n,visited);
+}
+
