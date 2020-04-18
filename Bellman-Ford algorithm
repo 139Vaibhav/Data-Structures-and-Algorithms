@@ -1,0 +1,66 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+typedef struct{
+    int src;
+    int dest;
+    int wt;
+}edge;
+
+void bellFord(int n, int m, int s, edge e[]){
+    int distance[n];
+    for(int i=0;i<n;i++)
+    distance[i]=999;
+    
+    distance[s] = 0;
+    for(int i=0;i<n-1;i++){
+        for(int j=0;j<m;j++){
+            int u = e[j].src;
+            int v = e[j].dest;
+            int weight = e[j].wt;
+            if((distance[u]+weight)<distance[v]){
+                distance[v] = distance[u]+weight;
+            }
+        }
+    }
+    
+    // For checking negative cycle
+    
+    for(int i=0;i<m;i++){
+        int u = e[i].src;
+        int v = e[i].dest;
+        int weight = e[i].wt;
+        
+        if(distance[u]+weight<distance[v]){
+            cout<<"Negative Cycle";
+            return;
+        }
+        
+    }
+    
+    //Print
+    
+    for(int i=0;i<n;i++)
+    cout<<distance[i]<<" ";
+}
+
+int main(){
+    int n,m,s;
+    
+    
+    cout<<"Enter the number of vertices: "<<"\n";
+    cin>>n;
+    cout<<"Enter the starting point og traverse: "<<"\n";
+    cin>>s;
+    cout<<"Enter the number of edges: "<<"\n";
+    cin>>m;
+    edge e[m];
+    
+    for(int i=0;i<m;i++){
+        cin>>e[i].src;
+        cin>>e[i].dest;
+        cin>>e[i].wt;
+    }
+    bellFord(n,m,s,e);
+}
+
