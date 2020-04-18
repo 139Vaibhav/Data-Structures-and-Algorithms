@@ -1,0 +1,45 @@
+//Tree Traversal
+
+#include<bits/stdc++.h>
+using namespace std;
+
+// struct Node{
+//     int data;
+//     struct Node *left, *right;
+//     Node(int data){
+//         this->data = data;
+//         left = right = NULL;
+//     }
+// };
+
+class Node {
+    public:
+        int data;
+        Node *left;
+        Node *right;
+        Node(int d) {
+            data = d;
+            left = NULL;
+            right = NULL;
+        }
+};
+
+void InOrder(struct Node *node){
+    if(node == NULL)
+    return;
+    
+    InOrder(node->left);
+    std::cout << node->data << std::endl;
+    InOrder(node->right);
+}
+
+int main(){
+    Node *root = new Node(1); 
+    root->left = new Node(2); 
+    root->right = new Node(3); 
+    root->left->left = new Node(4); 
+    root->left->right = new Node(5);
+    
+    InOrder(root);
+}
+
