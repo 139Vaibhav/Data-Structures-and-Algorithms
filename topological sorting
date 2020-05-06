@@ -1,0 +1,44 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+void TopoLogical(int s, vector<int> adj[],bool *visited, stack<int> &stk){
+    visited[s] = true;
+    for(auto i = adj[s].begin(); i!=adj[s].end();++i){
+        if(!visited[*i])
+        TopoLogical(*i, adj, visited, stk);
+    }
+    stk.push(s);
+}
+
+void Topo(int s, vector<int> adj[], int n, bool *visited, stack<int> &stk){
+    for(int i=0;i<n;i++){
+        if(!visited[i]){
+            TopoLogical(i, adj,visited,stk);
+        }
+    }
+    
+}
+
+int main(){
+    int n,e;
+    cin>>n>>e;
+    std::vector<int> adj[e];
+    for(int i=0;i<e;i++){
+        int x,y;
+        cin>>x>>y;
+        adj[x].push_back(y);
+    }
+    bool *visited = new bool[n];
+    for(int i=0;i<n;i++)
+    visited[i] = false;
+    
+    std::stack<int> stk;
+    
+    Topo(0,adj,n,visited,stk);
+    while(stk.empty()==false){
+        cout<<stk.top()<<" ";
+        stk.pop();
+    }
+    
+    
+}
