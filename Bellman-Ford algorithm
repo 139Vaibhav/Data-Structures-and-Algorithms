@@ -50,7 +50,7 @@ int main(){
     
     cout<<"Enter the number of vertices: "<<"\n";
     cin>>n;
-    cout<<"Enter the starting point og traverse: "<<"\n";
+    cout<<"Enter the starting point of traverse: "<<"\n";
     cin>>s;
     cout<<"Enter the number of edges: "<<"\n";
     cin>>m;
