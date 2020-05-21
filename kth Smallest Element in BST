@@ -1,0 +1,15 @@
+// KthSmallest Element in BST
+
+int kthSmallest(Node *root, int &k){
+  if(!root)
+    return 0;
+  int left = kthSmallest(root->left,k);
+  if(left) //if its not 0, means we have found our kthSmallest in left subtree
+    return left;
+  k=k-1;
+  if(k==0)
+    return root->val;
+  int right = kthSmallest(root->right,k);
+    if(right) //if its not 0, means we have found our kthSmallest in right subtree
+    return right;
+}
