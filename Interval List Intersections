@@ -1,0 +1,41 @@
+Example 1:
+
+Input: A = [[0,2],[5,10],[13,23],[24,25]], B = [[1,5],[8,12],[15,24],[25,26]]
+Output: [[1,2],[5,5],[8,10],[15,23],[24,24],[25,25]]
+Reminder: The inputs and the desired output are lists of Interval objects, and not arrays or lists.
+
+solution
+
+class Solution {
+    int max(int a, int b){
+        if(a>=b)
+            return a;
+        else
+            return b;
+    }
+    int min(int a, int b){
+        if(a>=b)
+            return b;
+        else
+            return a;
+    }
+public:
+    vector<vector<int>> intervalIntersection(vector<vector<int>>& A, vector<vector<int>>& B) {
+        vector<vector<int>> res;
+        int Aptr=0, Bptr=0;
+        vector<int> temp(2);
+        
+        while(Aptr < A.size() && Bptr <B.size()){
+            if(A[Aptr][0]<=B[Bptr][1] && B[Bptr][0]<=A[Aptr][1]){
+                temp[0] = max(A[Aptr][0],B[Bptr][0]);
+                temp[1] = min(A[Aptr][1],B[Bptr][1]);
+                res.push_back(temp);
+            }
+            if(A[Aptr][1]>B[Bptr][1])
+                Bptr++;
+            else
+                Aptr++;
+        }
+        return res;
+    }
+};
