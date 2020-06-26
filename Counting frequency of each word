@@ -1,0 +1,22 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int main(){
+    vector<string> str = {"Hello","World","Bye","World","Hello","Hadoop","Bye","Hadoop","Bye","Hadoop","Hello","Hadoop"};
+    set<string> s;
+    for(int i=0;i<str.size();i++)
+        s.insert(str[i]);
+    
+    for(auto i=s.begin(); i!=s.end(); i++){
+        int n = count(str.begin(), str.end(), *i);
+        cout<<*i<<" = "<<n<<"\n";
+    }
+}
+
+
+
+Answer: 
+Bye = 3                                                                                                                                                                        
+Hadoop = 4                                                                                                                                                                     
+Hello = 3                                                                                                                                                                      
+World = 2
